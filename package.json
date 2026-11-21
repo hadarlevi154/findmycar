@@ -1,0 +1,12 @@
+{
+  "name": "wheres-my-car",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal web app that remembers where you parked and logs your rides",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/run.js"
+  },
+  "engines": { "node": ">=20" }
+}
