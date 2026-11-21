@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// A place where the car was parked. The row with leftAt = null is the CURRENT spot.
+// When the car moves, leftAt is set and the row becomes history.
+model Parking {
+  id       String    @id @default(uuid())
+  lat      Float
+  lng      Float
+  accuracy Int?
+  note     String    @default("")
+  source   String // "auto" | "manual"
+  parkedAt DateTime  @default(now())
+  leftAt   DateTime?
+
+  @@index([leftAt, parkedAt])
+}
+
+// A drive. The row with endedAt = null is the ride in progress.
+model Ride {
+  id        String    @id @default(uuid())
+  startedAt DateTime  @default(now())
+  endedAt   DateTime?
+  startLat  Float?
+  startLng  Float?
+  endLat    Float?
+  endLng    Float?
+  durationS Int?
+  distanceM Int?
+
+  @@index([endedAt, startedAt])
+}

@@ -1,0 +1,16 @@
+{
+  "name": "wheres-my-car",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Personal web app that remembers where you parked and logs your rides (Vercel + Prisma + Postgres)",
+  "scripts": {
+    "postinstall": "prisma generate",
+    "build": "DATABASE_URL=\"${DATABASE_URL_UNPOOLED:-$DATABASE_URL}\" prisma db push --skip-generate",
+    "test": "node test/run.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.0.0",
+    "prisma": "^6.0.0"
+  },
+  "engines": { "node": ">=20" }
+}
